@@ -23,6 +23,14 @@ public class TodoBankController {
         todos.add(todo);
         return new ApiResponseBank("Customer added");
     }
-
+    @DeleteMapping("/delete/{ID}")
+    public ApiResponseBank delete(@PathVariable String ID){
+        TodoBank todo;
+        for (TodoBank value : todos){
+            if ( value.getID().equalsIgnoreCase(ID))
+                todos.remove(value);
+        }
+        return new ApiResponseBank("Customer removed");
+    }
 
 }
