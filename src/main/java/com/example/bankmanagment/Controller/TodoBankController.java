@@ -1,6 +1,8 @@
 package com.example.bankmanagment.Controller;
 
+import com.example.bankmanagment.Api.ApiResponseBank;
 import com.example.bankmanagment.Model.TodoBank;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,5 +13,11 @@ import java.util.ArrayList;
 
 public class TodoBankController {
     ArrayList<TodoBank> todos = new ArrayList<>();
+
+    @GetMapping("/get")
+    public ArrayList<TodoBank> getall(){
+        return todos;
+    }
+
 
 }
