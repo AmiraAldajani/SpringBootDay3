@@ -18,7 +18,7 @@ public class TodoBankController {
     }
 
     @PostMapping("/add/{ID}/{username}/{balance}")
-    public ApiResponseBank add(@PathVariable String ID, @PathVariable String username, @PathVariable String balance){
+    public ApiResponseBank add(@PathVariable String ID, @PathVariable String username, @PathVariable double balance){
         TodoBank todo = new TodoBank(ID,username,balance);
         todos.add(todo);
         return new ApiResponseBank("Customer added");
@@ -31,6 +31,24 @@ public class TodoBankController {
                 todos.remove(value);
         }
         return new ApiResponseBank("Customer removed");
+    }
+
+    @PutMapping("/deposit/{ID}/{balance}")
+    public ApiResponseBank deposit(@PathVariable String ID, @PathVariable double balance){
+        for (TodoBank value : todos){
+            if ( value.getID().equalsIgnoreCase(ID))
+                value.setBalance(value.getBalance()+balance);
+        }
+        return new ApiResponseBank("money deposited");
+    }
+
+    @PutMapping("/withdraw/{ID}/{balance}")
+    public ApiResponseBank withdraw(@PathVariable String ID, @PathVariable double balance){
+        for (TodoBank value : todos){
+            if ( value.getID().equalsIgnoreCase(ID))
+                value.setBalance(value.getBalance()-balance);
+        }
+        return new ApiResponseBank("money withdrew");
     }
 
 }

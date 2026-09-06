@@ -9,5 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TodoBank {
-    private String ID, username, Balance;
+    private String ID, username;
+    private double Balance;
 }
