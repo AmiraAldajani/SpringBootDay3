@@ -48,12 +48,10 @@ public class TodoController {
     @PutMapping("/chengestatus/{ID}/{isDone}")
     public ApiResponse deleteTask(@PathVariable String ID, @PathVariable String isDone){
         for (Todo value: todos){
-            if (value.isStatus()){
-                if (value.getID().equalsIgnoreCase(ID)) {
-                    if (isDone.equalsIgnoreCase("done"))
-                        value.setStatus(true);
-                    else value.setStatus(false);
-                }
+            if (value.getID().equalsIgnoreCase(ID)) {
+                if (isDone.equalsIgnoreCase("done"))
+                    value.setStatus(true);
+                else value.setStatus(false);
             }
         }
         return new ApiResponse("Status changed");
